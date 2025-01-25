@@ -2,6 +2,7 @@
 #define LEDMATRIX_H
 
 #include <stdint.h>
+#include "pico/stdlib.h"
 
 // Defines
 #define LEDMATRIX_PIN 7
@@ -14,7 +15,7 @@ typedef struct {
     uint8_t state;
 } rgb_led;
 
-rgb_led leds[NUM_PIXELS];
+extern rgb_led leds[NUM_PIXELS];
 
 // Funções
 uint matrix_init(uint pin_out);

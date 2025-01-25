@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "pico/stdlib.h"
 #include "ledmatrix.h"
 #include <hardware/pio.h>
 #include "hardware/clocks.h"
@@ -9,6 +8,7 @@
 
 PIO pio;
 uint sm;
+rgb_led leds[NUM_PIXELS];
 
 // função que inicializa a matriz de LEDs
 uint matrix_init(uint pin_out) {
@@ -16,11 +16,10 @@ uint matrix_init(uint pin_out) {
     uint offset = pio_add_program(pio0, &ws2818b_program);
     pio = pio0;
 
-    // Toma posse de uma máquina PIO.
     sm = pio_claim_unused_sm(pio, false);
     if (sm < 0) {
         pio = pio1;
-        sm = pio_claim_unused_sm(pio, true); // Se nenhuma máquina estiver livre, panic!
+        sm = pio_claim_unused_sm(pio, true);
     }
 
     gpio_init(pin_out);
@@ -55,7 +54,7 @@ void matrix_clear() {
 // função que escreve os dados do buffer nos LEDs
 void matrix_write() {
     // Escreve cada dado de 8-bits dos pixels em sequência no buffer da máquina PIO.
-    for (uint i = 0; i < NUM_PIXELS; ++i) {
+    for(uint i = 0; i < NUM_PIXELS; ++i) {
         pio_sm_put_blocking(pio, sm, leds[i].G);
         pio_sm_put_blocking(pio, sm, leds[i].R);
         pio_sm_put_blocking(pio, sm, leds[i].B);
