@@ -45,8 +45,8 @@ add_executable(animating-LED-matrix ${SRCSOURCES} ${LIBSOURCES})
 pico_set_program_name(animating-LED-matrix "animating-LED-matrix")
 pico_set_program_version(animating-LED-matrix "0.1")
 
-# Generate PIO header (esperando para quando for feito o arquivo .pio)
-# pico_generate_pio_header(animating-LED-matrix ${CMAKE_CURRENT_LIST_DIR}/include/arquivo.pio)
+# Generate PIO header
+pico_generate_pio_header(animating-LED-matrix ${CMAKE_CURRENT_LIST_DIR}/include/ws2818b.pio)
 
 # Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(animating-LED-matrix 1)
