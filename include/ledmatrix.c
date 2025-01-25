@@ -31,7 +31,7 @@ uint matrix_init(uint pin_out) {
 }
 
 // função que ativa um único LED com código rgb
-void led_set(const uint index, const uint8_t r, const uint8_t g, const uint8_t b) {
+void matrix_led_set(const uint index, const uint8_t r, const uint8_t g, const uint8_t b) {
     leds[index].R = r;
     leds[index].G = g;
     leds[index].B = b;
@@ -66,8 +66,8 @@ int matrix_get_index(int x, int y) {
     // Se a linha for par (0, 2, 4), percorremos da esquerda para a direita.
     // Se a linha for ímpar (1, 3), percorremos da direita para a esquerda.
     if (y % 2 == 0) {
-        return y * 5 + x; // Linha par (esquerda para direita).
+        return y * 5 + (4 - x); // Linha par (direita para esquerda).
     } else {
-        return y * 5 + (4 - x); // Linha ímpar (direita para esquerda).
+        return y * 5 + x; // Linha ímpar (esquerda para direita).
     }
 }
