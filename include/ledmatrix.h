@@ -19,7 +19,7 @@ extern rgb_led leds[NUM_PIXELS];
 
 // Funções
 uint matrix_init(uint pin_out);
-void led_set(const uint index, const uint8_t r, const uint8_t g, const uint8_t b);
+void matrix_led_set(const uint index, const uint8_t r, const uint8_t g, const uint8_t b);
 void matrix_fill(const uint8_t r, const uint8_t g, const uint8_t b);
 void matrix_clear();
 void matrix_write();
