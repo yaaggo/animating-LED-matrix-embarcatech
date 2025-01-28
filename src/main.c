@@ -11,16 +11,33 @@
 #define ANIMATION_TIME 3000
 #define DEBUG(var) printf("%s : %c\n", #var, var)
 
+#define KEYPAD
+
+void clear_input_buffer() {
+    while (getchar() != '\n');
+}
+
 int main() {
     stdio_init_all();
 
-    keypad_init();
+    #ifdef KEYPAD
+        keypad_init();
+    #endif
+
     buzzer_init(BUZZER_A_PIN);
     matrix_init(LEDMATRIX_PIN);
     matrix_write();
 
     while (true) {
-        char key_pressed = keypad_return();
+        int key_pressed;
+
+        #ifdef KEYPAD
+            key_pressed = keypad_return();
+        #else
+            scanf(" %c", &key_pressed);
+        #endif
+
+        #if 1
         if(key_pressed != ' ') {
 
             uint16_t time = 0;
@@ -165,7 +182,7 @@ int main() {
                     break;
             }
         }
-
-        sleep_ms(50);
+        #endif
+        sleep_ms(100);
     }
 }
