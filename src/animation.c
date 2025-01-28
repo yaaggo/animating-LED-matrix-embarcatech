@@ -32,19 +32,19 @@ void apply_frame(const uint32_t frame[NUM_PIXELS]) {
 }
 
 // Função para exibir uma animação a partir de uma matriz de frames
-void display_animation(const uint32_t *frames, uint num_frames, uint fps) {
-    if (fps == 0) return; // Evita divisão por zero
+void display_animation(const uint32_t frames[][NUM_PIXELS], uint num_frames, uint time) {
+    // tirei o calculo do fps pq não fazia sentido
+    // substitui pelo calculo de quanto tempo cada frame vai ficar em milissegundo
 
-    uint frame_delay_us = 1000000 / fps; // Tempo de atraso entre frames em microsegundos
+    uint frame_delay = time / num_frames;
 
-    while (1) { // Loop infinito para repetir a animação
-        for (uint frame = 0; frame < num_frames; ++frame) {
-            // Aplica o frame atual
-            apply_frame(&frames[frame * NUM_PIXELS]);
-
-            // Aguarda o tempo definido pelo FPS
-            usleep(frame_delay_us);
-        }
+    matrix_clear();
+    // tirei o loop infinito porque atrapalhava o funcionamento do resto do código
+    for (uint frame = 0; frame < num_frames; ++frame) {
+        // Aplica o frame atual
+        apply_frame(frames[frame]);
+        matrix_write(); // estava faltando escrever na matriz
+        sleep_ms(frame_delay);
     }
 }
 

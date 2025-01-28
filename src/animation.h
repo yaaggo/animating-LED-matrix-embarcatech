@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 #include <include/ledmatrix.h>
-#include <unistd.h>
+#include "pico/stdlib.h"
 
 // Definições
 #define MATRIX_ROWS 5
@@ -26,12 +26,8 @@
 
 // Funções
 void convertToRGB(int argb, int rgb[3]); //apesar da sugestão, optei por deixar deste modo, por argb ser um pouco mais completo para converssão.
-
-
-// sugestão para a função de conversão
 void apply_frame(const uint32_t frame[NUM_PIXELS]);
-void display_animation(const uint32_t *frames, uint num_frames, uint fps);
-rgb_led hex_to_rgb(uint32_t hex_color);
+void display_animation(const uint32_t frames[][NUM_PIXELS], uint num_frames, uint time);
 
 // Variáveis globais
 // exemplo de como fazer

@@ -8,7 +8,7 @@
 
 // Definição dos pinos das linhas e colunas
 uint8_t rows[KEYPAD_ROWS] = {1, 2, 3, 4};
-uint8_t columns[KEYPAD_COLS] = {5, 6, 7, 8};
+uint8_t columns[KEYPAD_COLS] = {19, 18, 17, 16};
 
 // Mapeamento dos caracteres do teclado matricial
 char KEY_MAP[KEYPAD_ROWS][KEYPAD_COLS] = {
