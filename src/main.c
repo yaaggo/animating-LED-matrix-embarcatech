@@ -11,7 +11,9 @@
 #define ANIMATION_TIME 3000
 #define DEBUG(var) printf("%s : %c\n", #var, var)
 
-#define KEYPAD
+// comentar seguinte linha caso queira utilizar o keypad
+
+#define KEYPAD // assim os dados serão pegos pela entrada padrão
 
 void clear_input_buffer() {
     while (getchar() != '\n');
