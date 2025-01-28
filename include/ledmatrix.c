@@ -40,14 +40,14 @@ void matrix_led_set(const uint index, const uint8_t r, const uint8_t g, const ui
 // função que acende todos os LEDs da matriz com uma única cor
 void matrix_fill(const uint8_t r, const uint8_t g, const uint8_t b) {
     for(uint i = 0; i < NUM_PIXELS; i++) {
-        led_set(i, r, g, b);
+        matrix_led_set(i, r, g, b);
     }
 }
 
 // função que limpa a matriz (desliga todos os LEDs)
 void matrix_clear() {
     for(uint i = 0; i < NUM_PIXELS; i++) {
-        led_set(i, 0, 0, 0);
+        matrix_led_set(i, 0, 0, 0);
     }
 }
 
