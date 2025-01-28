@@ -17,8 +17,6 @@
 
 int main() {
     stdio_init_all();
-
-    printf("oi\n");
     
     #ifdef KEYPAD
         keypad_init();
@@ -117,7 +115,7 @@ int main() {
                     }
                     break;
 
-                // Animação 7: Bomba
+                // Animação 7: bomba
                 case '7':
                     while(time < ANIMATION_TIME) {
                         display_animation(
@@ -125,21 +123,36 @@ int main() {
                             BOMB_FRAME_COUNT, 
                             2000
                         );
-                        time += 1000;
+                        time += 2000;
                     }
                     break;
 
-                // Animação 8: esperando ser feita
+                // Animação 8: tetris
                 case '8':
-                
+                    while(time < ANIMATION_TIME) {
+                        display_animation(
+                            tetris_data, 
+                            TETRIS_FRAME_COUNT, 
+                            3000
+                        );
+                        time += 3000;
+                    }
                     break;
 
                 // Animação 9: esperando ser feita
                 case '9':
-                
+                    while(time < ANIMATION_TIME) {
+                        display_animation(
+                            degrade_data, 
+                            DEGRADE_FRAME_COUNT, 
+                            1000
+                        );
+                        time += 1000;
+                    }
+
                     break;
 
-                // Animação com buzzer: esperando ser feita
+                // Animação com buzzer: bubble sort
                 case '0':
                     while(time < ANIMATION_TIME) {
                         display_animation_with_sound(
@@ -191,6 +204,6 @@ int main() {
             }
         }
         #endif
-        sleep_ms(100);
+        sleep_ms(50);
     }
 }
