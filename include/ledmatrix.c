@@ -22,10 +22,14 @@ uint matrix_init(uint pin_out) {
         sm = pio_claim_unused_sm(pio, true);
     }
 
-    gpio_init(pin_out);
-    gpio_set_dir(pin_out, GPIO_OUT);
+    ws2818b_program_init(pio, sm, offset, pin_out); // tive que mudar a .pio
 
-    ws2818b_program_init(pio, sm, offset, pin_out, 800000.f);
+    for (uint i = 0; i < NUM_PIXELS; ++i) {
+        //leds[i].activate = 0;
+        leds[i].R = 0;
+        leds[i].G = 0;
+        leds[i].B = 0;
+    }
 
     return sm;
 }
@@ -54,11 +58,11 @@ void matrix_clear() {
 // função que escreve os dados do buffer nos LEDs
 void matrix_write() {
     // Escreve cada dado de 8-bits dos pixels em sequência no buffer da máquina PIO.
-    for(uint i = 0; i < NUM_PIXELS; ++i) {
-        pio_sm_put_blocking(pio, sm, leds[i].G);
-        pio_sm_put_blocking(pio, sm, leds[i].R);
-        pio_sm_put_blocking(pio, sm, leds[i].B);
+    for (uint8_t i = 0; i < NUM_PIXELS; ++i) {
+        uint32_t color = COLOR_HEX(leds[i].R, leds[i].G, leds[i].B);
+        pio_sm_put_blocking(pio, sm, color);
     }
+    sleep_us(100);
 }
 
 // função que procura um LED específico na matriz de LEDs, de acordo com suas coordenadas x e y

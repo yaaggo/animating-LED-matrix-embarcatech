@@ -8,6 +8,9 @@
 #define LEDMATRIX_PIN 7
 #define NUM_PIXELS 25
 
+#define COLOR_HEX(r, g, b) (g << 24) | (r << 16) | (b << 8)
+
+
 // struct para indicar um led rgb
 // deixei isso padronizado para aproveitar em outros espaços
 typedef struct {
