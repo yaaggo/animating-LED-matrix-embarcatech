@@ -11,17 +11,15 @@
 #define ANIMATION_TIME 3000
 #define DEBUG(var) printf("%s : %c\n", #var, var)
 
-// comentar seguinte linha caso queira utilizar o keypad
+// comentar seguinte linha caso não queira utilizar o keypad
 
-#define KEYPAD // assim os dados serão pegos pela entrada padrão
-
-void clear_input_buffer() {
-    while (getchar() != '\n');
-}
+#define KEYPAD // assim os dados serão pegos pela entrada padrão via UART
 
 int main() {
     stdio_init_all();
 
+    printf("oi\n");
+    
     #ifdef KEYPAD
         keypad_init();
     #endif
@@ -143,7 +141,15 @@ int main() {
 
                 // Animação com buzzer: esperando ser feita
                 case '0':
-                
+                    while(time < ANIMATION_TIME) {
+                        display_animation_with_sound(
+                            bubble_sort_data, 
+                            BUBBLESORT_FRAME_COUNT, 
+                            4000,
+                            melody_bubble_sort
+                        );
+                        time += 4000;
+                    }
                     break;
                 
                 // Tecla A: apagar todos os leds
