@@ -8,12 +8,12 @@
 
 #include "animation.h"
 
-#define ANIMATION_TIME 3000
+#define ANIMATION_TIME 2000
 #define DEBUG(var) printf("%s : %c\n", #var, var)
 
 // comentar seguinte linha caso não queira utilizar o keypad
 
-#define KEYPAD // assim os dados serão pegos pela entrada padrão, via UART
+#define KEYPAD // DEFINIDO : DADOS KEYPAD / NÃO DEFINIDO (COMENTADO): DADOS UART
 
 int main() {
     stdio_init_all();
@@ -32,7 +32,7 @@ int main() {
         #ifdef KEYPAD
             key_pressed = keypad_return();
         #else
-            scanf(" %c", &key_pressed);
+            key_pressed = getchar();
         #endif
 
         #if 1
@@ -204,6 +204,6 @@ int main() {
             }
         }
         #endif
-        sleep_ms(50);
+        sleep_ms(100);
     }
 }
