@@ -4,11 +4,50 @@
 #define HEART_FRAME_COUNT 8
 
 // Funções
-void convertToRGB(int argb, int rgb[3]) {
-    rgb[0] = argb & 0xFF;          // Blue
-    rgb[2] = (argb >> 16) & 0xFF;  // Red
+void convertToRGB(int argb, int rgb[3]) { // a ordem para as cores estavam erradas
+    rgb[0] = argb & 0xFF;          // Red
     rgb[1] = (argb >> 8) & 0xFF;   // Green
+    rgb[2] = (argb >> 16) & 0xFF;  // Blue
 }
+
+// Função para aplicar um único frame nos LEDs
+void apply_frame(const uint32_t frame[NUM_PIXELS]) {
+    int rgb[3];
+  
+    for (uint i = 0; i < NUM_PIXELS; ++i) {
+        uint8_t row = i / 5;
+        uint8_t col = i % 5; // ajustei para ficar o indice correto da animação, porem deve ser revisao
+        uint8_t index;
+      
+        if (row % 2 == 0) col = 5 - 1 - col; // lembrar de trocar por macros esses 5
+        index = (5 - 1 - row) * 5 + col;
+        
+        convertToRGB(frame[i], rgb);
+        // Define a cor do LED correspondente
+        matrix_led_set(index, rgb[0], rgb[1], rgb[2]); // adaptei para usar a função que foi criada recentemente
+    }
+
+    // Escreve os dados no hardware dos LEDs
+    matrix_write();
+}
+
+// Função para exibir uma animação a partir de uma matriz de frames
+void display_animation(const uint32_t *frames, uint num_frames, uint fps) {
+    if (fps == 0) return; // Evita divisão por zero
+
+    uint frame_delay_us = 1000000 / fps; // Tempo de atraso entre frames em microsegundos
+
+    while (1) { // Loop infinito para repetir a animação
+        for (uint frame = 0; frame < num_frames; ++frame) {
+            // Aplica o frame atual
+            apply_frame(&frames[frame * NUM_PIXELS]);
+
+            // Aguarda o tempo definido pelo FPS
+            usleep(frame_delay_us);
+        }
+    }
+}
+
 // Variaveis com as animações, exemplo
 
 const uint32_t fan_data[4][25] = {
