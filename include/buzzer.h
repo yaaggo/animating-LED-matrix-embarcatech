@@ -24,4 +24,7 @@ void buzzer_turn_off(uint8_t gpio);
 // Funçao para ativa o Buzzer por um tempo determinado (em milissegundos)
 void buzzer_beep(uint8_t gpio, uint16_t freq, uint16_t duration_ms);
 
+// Função para ativar o buzzer ao pressionar o botão 0
+void buzzer_control_with_button(uint8_t buzzer_gpio, uint button_gpio, uint frequency)
+
 #endif

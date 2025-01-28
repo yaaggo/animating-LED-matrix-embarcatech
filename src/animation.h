@@ -25,6 +25,7 @@
 void convertToRGB(int argb, int rgb[3]); //apesar da sugestão, optei por deixar deste modo, por argb ser um pouco mais completo para converssão.
 void apply_frame(const uint32_t frame[NUM_PIXELS]);
 void display_animation(const uint32_t frames[][NUM_PIXELS], uint num_frames, uint time);
+void activate_animation_with_button(const uint32_t frames[][NUM_PIXELS], uint num_frames, uint time, uint button)
 
 // Variáveis globais
 // exemplo de como fazer

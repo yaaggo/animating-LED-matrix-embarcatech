@@ -48,6 +48,16 @@ void display_animation(const uint32_t frames[][NUM_PIXELS], uint num_frames, uin
     }
 }
 
+// Função para ativar a animação com o botão 0
+void activate_animation_with_button(const uint32_t frames[][NUM_PIXELS], uint num_frames, uint time, uint button) {
+    while (true) {
+        if (is_button_pressed(button)) { // Verifica se o botão está pressionado
+            display_animation(frames, num_frames, time); // Executa a animação
+        }
+        sleep_ms(50); // Pequeno atraso para evitar polling excessivo
+    }
+}
+
 // Variaveis com as animações, exemplo
 
 const uint32_t fan_data[5][25] = {

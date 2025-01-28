@@ -41,3 +41,15 @@ void buzzer_beep(uint8_t gpio, uint16_t freq, uint16_t duration_ms) {
     sleep_ms(duration_ms); // Espera o tempo determinado
     buzzer_turn_off(gpio); // Desliga o buzzer após o tempo
 }
+
+// Função para ativar o buzzer ao pressionar o botão 0
+void buzzer_control_with_button(uint8_t buzzer_gpio, uint button_gpio, uint frequency) {
+    while (true) {
+        if (is_button_pressed(button_gpio)) { // Verifica se o botão está pressionado
+            buzzer_turn_on(buzzer_gpio, frequency); // Liga o buzzer
+        } else {
+            buzzer_turn_off(buzzer_gpio); // Desliga o buzzer
+        }
+        sleep_ms(50); // Pequeno atraso para evitar polling excessivo
+    }
+}
