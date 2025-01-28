@@ -24,7 +24,7 @@
 #define DEGRADE_FRAME_COUNT      9
 
 // Funções
-void convertToRGB(int argb, int rgb[3]); //apesar da sugestão, optei por deixar deste modo, por argb ser um pouco mais completo para converssão.
+void convertToRGB(int argb, int rgb[3]);
 void apply_frame(const uint32_t frame[NUM_PIXELS]);
 void display_animation(const uint32_t frames[][NUM_PIXELS], uint num_frames, uint time);
 
@@ -38,7 +38,6 @@ void display_animation_with_sound(const uint32_t frames[][NUM_PIXELS],
 
 // sons para animação
 extern const uint16_t melody_bubble_sort[BUBBLESORT_FRAME_COUNT];
-// exemplo de como fazer
 
 extern const uint32_t fan_data[5][25];          // implemendado
 extern const uint32_t heart_data[8][25];        // implemendado

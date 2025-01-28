@@ -4,7 +4,7 @@
 #define HEART_FRAME_COUNT 8
 
 // Funções
-void convertToRGB(int argb, int rgb[3]) { // a ordem para as cores estavam erradas
+void convertToRGB(int argb, int rgb[3]) {
     rgb[0] = argb & 0xFF;          // Red
     rgb[1] = (argb >> 8) & 0xFF;   // Green
     rgb[2] = (argb >> 16) & 0xFF;  // Blue
@@ -16,15 +16,15 @@ void apply_frame(const uint32_t frame[NUM_PIXELS]) {
   
     for (uint i = 0; i < NUM_PIXELS; ++i) {
         uint8_t row = i / 5;
-        uint8_t col = i % 5; // ajustei para ficar o indice correto da animação, porem deve ser revisao
+        uint8_t col = i % 5;
         uint8_t index;
       
-        if (row % 2 == 0) col = 5 - 1 - col; // lembrar de trocar por macros esses 5
+        if (row % 2 == 0) col = 5 - 1 - col;
         index = (5 - 1 - row) * 5 + col;
         
         convertToRGB(frame[i], rgb);
         // Define a cor do LED correspondente
-        matrix_led_set(index, rgb[0], rgb[1], rgb[2]); // adaptei para usar a função que foi criada recentemente
+        matrix_led_set(index, rgb[0], rgb[1], rgb[2]);
     }
 
     // Escreve os dados no hardware dos LEDs
@@ -33,17 +33,14 @@ void apply_frame(const uint32_t frame[NUM_PIXELS]) {
 
 // Função para exibir uma animação a partir de uma matriz de frames
 void display_animation(const uint32_t frames[][NUM_PIXELS], uint num_frames, uint time) {
-    // tirei o calculo do fps pq não fazia sentido
-    // substitui pelo calculo de quanto tempo cada frame vai ficar em milissegundo
 
     uint frame_delay = time / num_frames;
 
     matrix_clear();
-    // tirei o loop infinito porque atrapalhava o funcionamento do resto do código
     for (uint frame = 0; frame < num_frames; ++frame) {
         // Aplica o frame atual
         apply_frame(frames[frame]);
-        matrix_write(); // estava faltando escrever na matriz
+        matrix_write();
         sleep_ms(frame_delay);
     }
 }

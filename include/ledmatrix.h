@@ -12,7 +12,6 @@
 
 
 // struct para indicar um led rgb
-// deixei isso padronizado para aproveitar em outros espaços
 typedef struct {
     uint8_t R, G, B;
     uint8_t state;

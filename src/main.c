@@ -13,7 +13,7 @@
 
 // comentar seguinte linha caso não queira utilizar o keypad
 
-#define KEYPAD // assim os dados serão pegos pela entrada padrão via UART
+#define KEYPAD // assim os dados serão pegos pela entrada padrão, via UART
 
 int main() {
     stdio_init_all();
