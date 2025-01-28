@@ -33,6 +33,7 @@ rgb_led hex_to_rgb(uint32_t hex_color);
 // exemplo de como fazer
 
 extern const uint32_t fan_data[4][25];
+extern const uint32_t color_data[6][25];
 extern const uint32_t vowels_data[5][25];
 extern const uint32_t miaw_data[8][25];
 extern const uint32_t spiral_data[50][25];
