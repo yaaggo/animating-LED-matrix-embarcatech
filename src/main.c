@@ -22,6 +22,8 @@ void clear_input_buffer() {
 int main() {
     stdio_init_all();
 
+    printf("oi\n");
+    
     #ifdef KEYPAD
         keypad_init();
     #endif
