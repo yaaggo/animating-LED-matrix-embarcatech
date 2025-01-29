@@ -8,7 +8,7 @@
 
 #include "animation.h"
 
-#define ANIMATION_TIME 2000
+#define ANIMATION_TIME 3000
 #define DEBUG(var) printf("%s : %c\n", #var, var)
 
 // comentar seguinte linha caso não queira utilizar o keypad
