@@ -34,7 +34,7 @@
 <h2></h2>
 <h2 align="center"> Vídeo :video_camera: </h2>
 <p align="justify"> &emsp;&emsp;&emsp;&emsp; Aqui está o link para o vídeo com uma prática de simulação associada a esta tarefa: </p>
-<p align="center">  </p>
+<p align="center"> https://www.youtube.com/watch?v=MXV9bTbXYNc </p>
 
 <h2></h2>
 <h2 align="center"> Como utilizar :computer_mouse: </h2>
@@ -45,4 +45,5 @@
 - Abrir o projeto no VS Code, importando-o pela extensão Raspberry Pi Pico;
 - Abrir o arquivo diagram.json para usar o simulador Wokwi;
 - Executar a simulação.
+- Caso queira usar na placa BitDogLab, comentar a definição do KEYPAD.
 </samp>
